@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://bpldsl1t5cwsc"]
+
+[ext_resource type="Texture2D" uid="uid://b8asi7o32x4ye" path="res://brackeys_platformer_assets/brackeys_platformer_assets/sprites/FB001.png" id="1_ynjm1"]
+[ext_resource type="Texture2D" uid="uid://dq0g0oy8nvemm" path="res://brackeys_platformer_assets/brackeys_platformer_assets/sprites/FB002.png" id="2_h31sq"]
+[ext_resource type="Texture2D" uid="uid://bsp0dulga7h2a" path="res://brackeys_platformer_assets/brackeys_platformer_assets/sprites/FB003.png" id="3_drdgx"]
+[ext_resource type="Texture2D" uid="uid://c8xi4kod2uhrl" path="res://brackeys_platformer_assets/brackeys_platformer_assets/sprites/FB005.png" id="4_xt1v3"]
+[ext_resource type="Texture2D" uid="uid://dgghfne6x65jj" path="res://brackeys_platformer_assets/brackeys_platformer_assets/sprites/FB004.png" id="5_qoc7y"]
+[ext_resource type="Script" uid="uid://be64523bqv2gj" path="res://enemy/fireball.gd" id="6_ynjm1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6nryv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ynjm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h31sq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_drdgx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xt1v3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h31sq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qoc7y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h31sq"]
+radius = 3.0
+
+[node name="fireball" type="Area2D"]
+collision_mask = 3
+monitorable = false
+script = ExtResource("6_ynjm1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-18.875002, 9.5)
+scale = Vector2(0.37109378, 0.34375)
+sprite_frames = SubResource("SpriteFrames_6nryv")
+autoplay = "default"
+frame_progress = 0.59486365
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-14, 9)
+shape = SubResource("CircleShape2D_h31sq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.6
+
+[node name="WaitTimer" type="Timer" parent="."]
+wait_time = 0.6
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(-14, 9)
+target_position = Vector2(3, 0)
+collision_mask = 3
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-14, 9)
+target_position = Vector2(-3, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4p18sakcs8y4"]
+
+[ext_resource type="Script" uid="uid://dafhfdjpk8wyn" path="res://script/win_screen.gd" id="1_l2arl"]
+
+[node name="Win_Screen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_l2arl")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.056950152, 0.051794566, 0.03795924, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -171.375
+offset_top = -108.75
+offset_right = 171.375
+offset_bottom = 108.75
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "YOU WIN!!"
+
+[node name="RESTART" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 33
+text = "RESTART"
+
+[node name="EXIT" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "EXIT"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/RESTART" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/EXIT" to="." method="_on_exit_pressed"]

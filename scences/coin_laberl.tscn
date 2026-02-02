@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bri4mterr5tgp"]
+
+[ext_resource type="Script" uid="uid://luh1c7vlx0fc" path="res://script/label.gd" id="1_te3pn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c1yoo"]
+
+[node name="coin_label" type="CanvasLayer"]
+
+[node name="Coin_label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_c1yoo")
+script = ExtResource("1_te3pn")

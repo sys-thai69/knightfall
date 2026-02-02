@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://bst5mqmm8dh8l"]
+
+[ext_resource type="Texture2D" uid="uid://d0be6mm2624wc" path="res://brackeys_platformer_assets/brackeys_platformer_assets/sprites/428-4286862_spikes-spikes-pixel-art.png" id="1_7k7bx"]
+[ext_resource type="PackedScene" uid="uid://b33msqckg4y6b" path="res://scences/killzone.tscn" id="2_tggh8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sso0"]
+atlas = ExtResource("1_7k7bx")
+region = Rect2(0, 0, 127, 141)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13jd2"]
+atlas = ExtResource("1_7k7bx")
+region = Rect2(151, 0, 127, 141)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p45v3"]
+atlas = ExtResource("1_7k7bx")
+region = Rect2(302, 0, 127, 141)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5qbj"]
+atlas = ExtResource("1_7k7bx")
+region = Rect2(453, 0, 127, 141)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jv4b2"]
+atlas = ExtResource("1_7k7bx")
+region = Rect2(604, 0, 127, 141)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3uixn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sso0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13jd2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p45v3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5qbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jv4b2")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bnngr"]
+size = Vector2(16.5, 18)
+
+[node name="Spike" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.46875, -0.96875)
+scale = Vector2(0.13435043, 0.14228721)
+sprite_frames = SubResource("SpriteFrames_3uixn")
+animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.5574704
+
+[node name="Area2D" parent="." instance=ExtResource("2_tggh8")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -0.125)
+shape = SubResource("RectangleShape2D_bnngr")
