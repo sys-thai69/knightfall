@@ -87,7 +87,7 @@ func take_hit(damage: int, _source_type: String = "melee") -> void:
 			# Attack from front — BLOCKED!
 			sprite.modulate = Color(0.5, 0.5, 1.0)
 			get_tree().create_timer(0.1).timeout.connect(func(): sprite.modulate = Color.WHITE)
-			ScreenEffects.spawn_damage_number(global_position, 0, Color.GRAY)
+			ScreenEffects.spawn_text_popup(global_position, "BLOCK", Color.GRAY)
 			return
 
 	# Attack from behind — takes damage!

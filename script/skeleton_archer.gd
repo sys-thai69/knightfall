@@ -12,7 +12,7 @@ const GRAVITY_VAL = 600.0
 var health: int = 3
 var is_dead: bool = false
 var player_ref: CharacterBody2D = null
-var fire_timer: float = 0.0
+var fire_timer: float = FIRE_INTERVAL  # Start with a delay so it doesn't fire immediately
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 

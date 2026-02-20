@@ -21,6 +21,8 @@ var phase: int = 1  # 1 = slow, 2 = faster, 3 = aggressive
 
 # --- Movement ---
 var direction: int = -1
+const ACTIVATION_RANGE: float = 250.0  # Boss only engages when player is within this range
+var is_activated: bool = false
 const SPEED_PHASE1: float = 40.0
 const SPEED_PHASE2: float = 60.0
 const SPEED_PHASE3: float = 80.0
@@ -85,6 +87,16 @@ func _physics_process(delta: float) -> void:
     if player_ref and not player_ref.is_dead:
         var dist: float = global_position.distance_to(player_ref.global_position)
         var dir_to_player: int = int(sign(player_ref.global_position.x - global_position.x))
+
+        # Only activate when player gets close enough
+        if not is_activated:
+            if dist > ACTIVATION_RANGE:
+                velocity.x = 0
+                _play("idle")
+                move_and_slide()
+                return
+            else:
+                is_activated = true
 
         # Face player (flip sprite)
         if not is_charging and not is_acting:
